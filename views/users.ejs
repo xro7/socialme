@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Users</title>
+	<style>
+		p{
+			display: inline;
+			margin:5px;
+		}
+	</style>
+</head>
+<body>
+
+	<%for (user in users) {%>
+		<p><a href="user/<%=users[user].id%>">
+
+			<% if(users[user].image) { %>
+				<img src="<%=users[user].username%><%=users[user].id%>/<%=users[user].image%>" alt="<%=users[user].username%>" height='50' weidth="50">
+			<%} else{%>
+				<img src="default.png" alt="<%=users[user].username%>" height='50' weidth="50">
+			<%} %>
+			</a>
+		</p>
+	<%} %>
+</body>
+</html>

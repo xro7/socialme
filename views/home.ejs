@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Home</title>
+	<link rel="stylesheet" href="/css/homestyle.css">
+	
+</head>
+<body>
+	<div id="top"><a href="/logout">Logout</a><a href="/settings">Settings</a><a href="/users">Users</a></div>
+
+
+	<table>
+		<tr>
+			<% if(user.image) { %>
+				<td ><img src="/<%=user.username%><%=user.id%>/<%=user.image%>" alt="<%=user.username%>" height='50' weidth="50"></td>
+			<%} else{%>
+				<td ><img src="default.png" alt="<%=user.username%>" height='50' weidth="50"></td>
+			<%} %>
+			<td colspan="2"><%=user.username%></td>
+
+		</tr>
+		<tr>
+			<td>tweets</td>
+			<td>follows</td>
+			<td>followers</td>
+		</tr>
+		<tr>
+			<td><%=tweets%></td>
+			<td><%=follows%></td>
+			<td><%=followers%></td>
+		</tr>
+	</table>
+
+	<p><%=message%></p>
+
+	<form action="tweet" method="post">
+		<textarea style="resize:none" maxlength='100' name="tweet" id="" cols="30" rows="5"></textarea>
+		<input type="submit" value="Post">
+	</form>
+	
+
+	<%
+	if (typeof posts != "undefined") {
+		for(post in posts){%>	
+		<p>
+			<% if(posts[post].image) { %>
+				<img src="<%=posts[post].username%><%=posts[post].id%>/<%=posts[post].image%>" alt="<%=user.username%>" height='50' weidth="50">
+			<%} else{%>
+				<img src="default.png" alt="<%=user.username%>" height='50' weidth="50">
+			<%} %>
+		
+		<a href="user/<%= posts[post].id %>" > <%=posts[post].username%></a>:<%= posts[post].comment%>
+		</p>
+		<%}
+	}%>
+
+
+	<div id="messages_container">
+		<div id="messages">messages</div>
+		<div id="active_users">users</div>
+		<form id="message_form">
+			<textarea style="resize:none" maxlength='100' name="message" id="message_area" cols="30" rows="5"></textarea>
+			<input type="submit" value="send">
+		</form>
+	</div>
+	
+
+
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			jQuery(function($) {
+				var socket = io.connect();
+				var $message_form = $('#message_form');
+				var $message = $('#message_area');
+				var $messages = $('#messages');
+				var $user = '<%=user.username%>';
+				var $active_users = $('#active_users');
+
+				socket.emit('new user',$user);
+
+				$message_form.submit(function(e){
+					e.preventDefault();
+					socket.emit('send message',$message.val());
+					$message.val('');
+				});
+
+				socket.on('new message',function(data){
+					$messages.append(data.nickname +':'+data.msg + '<br>');
+				});
+				socket.on('user update',function(users){
+					var html ='';
+					for(var i=0;i<users.length;i++){
+						html += users[i] + '<br>';
+					}
+					$active_users.html(html);
+				});
+			});
+			
+
+		</script>
+
+</body>
+</html>

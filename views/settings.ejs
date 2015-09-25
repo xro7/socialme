@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Settings</title>
+</head>
+<body>
+
+
+	<%if(image!=null){%>
+		<img src='<%=image%>' alt='asdf' height='150' weidth='150'>
+	<%}%>
+	<p><%=message%></p>
+	<form action="upload" method="post" enctype="multipart/form-data">
+	    <input type="file" name="profpic"/>
+	    <input type="submit" value="Submit">
+	</form>
+</body>
+</html>

@@ -1,0 +1,19 @@
+#messages_container{
+	width:300px;
+	position: absolute;
+	right:0;
+	top:30px;
+}
+
+#active_users{
+	float:left;
+	width:30%;	
+	background-color:#ccdddd;
+}
+
+#messages{
+	float:left;
+	width:70%;	
+	background-color:grey;
+
+}

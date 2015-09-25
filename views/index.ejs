@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Social ME </title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+	<div id="top_container">
+		<div id="logo"><h1>Social</h1></div>
+		<div id="top" >
+			<form id="login_form" action="login" method="post">
+				<input type="email" placeholder="Email" name="email">
+				<input type="password" placeholder="Password" name="password">
+				<input type="submit" value = "Sign In">
+			</form>		
+		</div>
+	</div>
+	<div id="body">
+		<div id="signup">
+			<form id="signup_form" action="register" method="post">
+				<input type="email" placeholder="Enter Email" name="email">
+				<input type="text" placeholder="Enter Name" name="name">
+				<input type="password" placeholder="Password" name="password">
+				<input type="password" placeholder="Repeat Password" name="rpassword">
+				<input type="submit" value = "Sign Up">
+				<p> <%= message %></p>
+			</form>		
+		</div>
+	</div>
+	<div id="footer" >SocialME </div>
+
+
+
+
+</body>
+</html>

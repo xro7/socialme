@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= spec_user.username %></title>
+</head>
+<body>
+	<h3><%= spec_user.username %></h3>
+	<%if (user.id!=spec_user.id){%>
+		<%if (follow){%>
+			<a href="/unfollow/<%= spec_user.id %>" > Unfollow</a>
+		<%}else{%>
+			<a href="/follow/<%= spec_user.id %>" > Follow</a>
+		<%}%>
+	<%}%>
+	<%for(post in posts){%>
+		<p>
+		<% if(posts[post].image) { %>
+			<img src="../<%=posts[post].username%><%=posts[post].id%>/<%=posts[post].image%>" alt="<%=posts[post].username%>" height='50' weidth="50">
+		<%} else{%>
+			<img src="../default.png" alt="<%=posts[post].username%>" height='50' weidth="50">
+		<%} %>
+
+		<a href="<%= posts[post].id %>" > <%=posts[post].username%></a> -> <%=posts[post].comment%></p>
+	<%}%>
+</body>
+</html>

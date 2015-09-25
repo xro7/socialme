@@ -1,0 +1,21 @@
+{
+  "name": "socialMe",
+  "version": "0.0.1",
+  "description": "a social network first attempt",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Polichronis Charitidis",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.9.3",
+    "connect-busboy": "0.0.2",
+    "cookie-parser": "^1.3.3",
+    "cookie-session": "^1.1.0",
+    "ejs": "*",
+    "express": "*",
+    "mysql": "*",
+    "socket.io": "^1.2.1"
+  }
+}
